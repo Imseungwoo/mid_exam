@@ -1,11 +1,21 @@
 package kr.ac.jejunu;
 
+import org.springframework.beans.factory.annotation.Value;
 import java.sql.*;
 
 public class JejuConnectionMaker implements ConnectionMaker{
+    @Value("${db.cassname}")
+    private String className;
+    @Value("${db.url}")
+    private String url;
+    @Value("${db.username}")
+    private String username;
+    @Value("${db.password}")
+    private String password;
+
     @Override
     public Connection getConnection() throws ClassNotFoundException, SQLException{
-        Class.forName("com.mysql.jdbc.Driver");
-        return DriverManeger.getConnection("jdbc://mysql://localhost/portal?characterEncoding=utf8", "root", "1111");
+        Class.forName(className);
+        return DriverManeger.getConnection(url, username, password);
     }
 }
