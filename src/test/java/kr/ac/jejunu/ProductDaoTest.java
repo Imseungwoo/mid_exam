@@ -3,15 +3,15 @@ package kr.ac.jejunu;
 import org.junit.Test;
 
 import java.sql.SQLException;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 
 public class ProductDaoTest {
-
+    private ProductDao productDao;
+    private DaoFactory daoFactory;
 //    private HallaProductDao hallaProductDao;
 
     public void setup() {
-
+        productDao = daoFactory.getProductDao();
     }
 
     @Test
