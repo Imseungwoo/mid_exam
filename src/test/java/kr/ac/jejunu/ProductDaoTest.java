@@ -11,6 +11,7 @@ public class ProductDaoTest {
 //    private HallaProductDao hallaProductDao;
 
     public void setup() {
+        daoFactory = new DaoFactory();
         productDao = daoFactory.getProductDao();
     }
 
