@@ -2,7 +2,7 @@ package kr.ac.jejunu;
 
 import java.sql.*;
 
-public class ProductDao {
+public abstract class ProductDao {
     public Product get(Long id) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1/portal", "root", "1111");
@@ -20,11 +20,9 @@ public class ProductDao {
         return product;
     }
 
-    public Product insert() throws SQLException {
+    public Product insert() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql//127.0.0.1/portal","root","1111");
-
-        Product product = new Product();
+        Connection connection = getConnection();
 
         PreparedStatement preparedStatement = getConnection().prepareStatement("insert into product (id, title, price) values ?, ?, ?");
         preparedStatementsetLong(1, id);
@@ -36,4 +34,9 @@ public class ProductDao {
         preparedStatement.close();
         connection.close();
     }
+
+    private  Connection getConnection() throws  ClassNotFoundException, SQLException{
+//        Class.forName("com.mysql.jdbc.Driver");
+//        return DriverManager.getConnection("jdbc:mysql//127.0.0.1/portal?characterEncoding=utf-8","root","1111");
+//    }
 }
